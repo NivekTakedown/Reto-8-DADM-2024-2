@@ -1,8 +1,8 @@
-
 package unal.edu.co.reto8
 
 import android.app.AlertDialog
 import android.content.ContentValues
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -46,9 +46,13 @@ class MainActivity : AppCompatActivity() {
 
         // Cargar empresas desde la base de datos
         empresas = dbHelper.getAllEmpresas()
-        empresaAdapter = EmpresaAdapter(empresas) { empresa ->
+        empresaAdapter = EmpresaAdapter(empresas, { empresa ->
             showDeleteConfirmation(empresa)
-        }
+        }, { empresa ->
+            val intent = Intent(this, EmpresaDetalleActivity::class.java)
+            intent.putExtra("EMPRESA_ID", empresa.id)
+            startActivity(intent)
+        })
 
         recyclerViewEmpresas.layoutManager = LinearLayoutManager(this)
         recyclerViewEmpresas.adapter = empresaAdapter
@@ -127,9 +131,13 @@ class MainActivity : AppCompatActivity() {
             matchesName && matchesClassification
         }
 
-        empresaAdapter = EmpresaAdapter(filteredEmpresas) { empresa ->
+        empresaAdapter = EmpresaAdapter(filteredEmpresas, { empresa ->
             showDeleteConfirmation(empresa)
-        }
+        }, { empresa ->
+            val intent = Intent(this, EmpresaDetalleActivity::class.java)
+            intent.putExtra("EMPRESA_ID", empresa.id)
+            startActivity(intent)
+        })
         recyclerViewEmpresas.adapter = empresaAdapter
     }
 

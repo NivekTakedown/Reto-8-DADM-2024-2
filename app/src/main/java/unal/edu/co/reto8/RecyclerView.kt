@@ -7,8 +7,11 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class EmpresaAdapter(private val empresas: List<Empresa>, private val onDelete: (Empresa) -> Unit) :
-    RecyclerView.Adapter<EmpresaAdapter.EmpresaViewHolder>() {
+class EmpresaAdapter(
+    private val empresas: List<Empresa>,
+    private val onDelete: (Empresa) -> Unit,
+    private val onItemClick: (Empresa) -> Unit
+) : RecyclerView.Adapter<EmpresaAdapter.EmpresaViewHolder>() {
 
     class EmpresaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nombre: TextView = itemView.findViewById(R.id.textNombre)
@@ -25,7 +28,12 @@ class EmpresaAdapter(private val empresas: List<Empresa>, private val onDelete: 
         val empresa = empresas[position]
         holder.nombre.text = empresa.nombre
         holder.clasificacion.text = empresa.clasificacion
-        holder.btnDelete.setOnClickListener { onDelete(empresa) }
+        holder.itemView.setOnClickListener {
+            onItemClick(empresa)
+        }
+        holder.btnDelete.setOnClickListener {
+            onDelete(empresa)
+        }
     }
 
     override fun getItemCount(): Int = empresas.size

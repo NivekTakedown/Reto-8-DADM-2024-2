@@ -101,6 +101,36 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         return db.delete(TABLE_EMPRESAS, "$COL_ID = ?", arrayOf(id.toString()))
     }
 
+    // **Obtener una empresa por ID**
+    fun getEmpresaById(id: Int): Empresa? {
+        val db = readableDatabase
+        val cursor = db.query(
+            TABLE_EMPRESAS,
+            null,
+            "$COL_ID = ?",
+            arrayOf(id.toString()),
+            null,
+            null,
+            null
+        )
+
+        return if (cursor.moveToFirst()) {
+            val empresa = Empresa(
+                id = cursor.getInt(cursor.getColumnIndexOrThrow(COL_ID)),
+                nombre = cursor.getString(cursor.getColumnIndexOrThrow(COL_NOMBRE)),
+                url = cursor.getString(cursor.getColumnIndexOrThrow(COL_URL)),
+                telefono = cursor.getString(cursor.getColumnIndexOrThrow(COL_TELEFONO)),
+                email = cursor.getString(cursor.getColumnIndexOrThrow(COL_EMAIL)),
+                productosServicios = cursor.getString(cursor.getColumnIndexOrThrow(COL_PRODUCTOS)),
+                clasificacion = cursor.getString(cursor.getColumnIndexOrThrow(COL_CLASIFICACION))
+            )
+            cursor.close()
+            empresa
+        } else {
+            cursor.close()
+            null
+        }
+    }
 }
 
 // **Clase modelo para Empresa**

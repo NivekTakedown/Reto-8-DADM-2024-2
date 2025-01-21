@@ -43,6 +43,12 @@
         android:text="Clasificación:" />
 
     <Button
+        android:id="@+id/btnEditarEmpresa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Editar Empresa" />
+
+    <Button
         android:id="@+id/btnEliminarEmpresa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

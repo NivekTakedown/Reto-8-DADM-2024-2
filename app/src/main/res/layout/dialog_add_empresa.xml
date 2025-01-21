@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/editNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre de la empresa"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/editUrl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="URL de la página web"
+        android:inputType="textUri" />
+
+    <EditText
+        android:id="@+id/editTelefono"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Teléfono de contacto"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/editEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email de contacto"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/editProductos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Productos y servicios"
+        android:inputType="textMultiLine"
+        android:minLines="2" />
+
+    <Spinner
+        android:id="@+id/spinnerClasificacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/classification_options" />
+</LinearLayout>

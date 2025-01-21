@@ -100,6 +100,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         val db = writableDatabase
         return db.delete(TABLE_EMPRESAS, "$COL_ID = ?", arrayOf(id.toString()))
     }
+
 }
 
 // **Clase modelo para Empresa**
